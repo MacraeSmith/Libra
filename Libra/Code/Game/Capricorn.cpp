@@ -1,0 +1,93 @@
+#include "Game/Capricorn.hpp"
+#include "Game/GameCommon.hpp"
+#include "Game/Game.hpp"
+#include "Game/Map.hpp"
+#include "Game/Player.hpp"
+#include "Engine/Core/EngineCommon.hpp"
+#include "Engine/Renderer/RendererDX11.hpp"
+#include "Engine/Core/VertexUtils.hpp"
+#include "Engine/Math/MathUtils.hpp"
+#include "Engine/Core/TileHeatMap.hpp"
+
+Capricorn::Capricorn(Map* const& mapOwner, EntityFaction faction)
+	:Entity(mapOwner, ENTITY_TYPE_EVIL_CAPRICORN, faction)
+{
+	UpdateGameConfigXmlData();
+	CreateTexture();
+	m_roamDistanceMap = new TileHeatMap(m_map->m_dimensions, DEFAULT_HEAT_MAP_SOLID_VALUE);
+	m_solidMap = new TileHeatMap(m_map->m_dimensions, DEFAULT_HEAT_MAP_SOLID_VALUE);
+}
+
+void Capricorn::Update(float deltaSeconds)
+{
+	m_positionLastFrame = m_position;
+	UpdateTimers(deltaSeconds);
+	Vec2 fwrdNormal = UpdateEntityPathFinding(deltaSeconds);
+	TryShootBullet(ENTITY_TYPE_EVIL_SHELL, FACTION_EVIL, fwrdNormal);
+}
+
+void Capricorn::Render() const
+{
+	Vec2 fwrdNormal = GetForwardNormal();
+	std::vector<Vertex_PCU> worldVerts;
+	AddVertsForAABB2D(worldVerts, m_entityBounds, Rgba8::WHITE);
+
+	TransformVertexArrayXY3D(worldVerts, fwrdNormal, fwrdNormal.GetRotated90Degrees(), m_position);
+	
+
+	g_renderer->SetBlendMode(BlendMode::ALPHA);
+	g_renderer->BindTexture(m_texture);
+	g_renderer->DrawVertexArray(worldVerts);
+}
+
+void Capricorn::DebugRender() const
+{
+	std::vector<Vertex_PCU> debugVerts;
+
+	//Physics Ring
+	AddVertsForRing2D(debugVerts, m_position, m_physicsRadius, m_debugLineThickness, Rgba8(0, 255, 255));
+
+	//Forward Vector
+	Vec2 vecFwrd = GetForwardNormal() * m_cosmeticRadius;
+	AddVertsForLineSegment2D(debugVerts, m_position, m_position + vecFwrd, m_debugLineThickness, Rgba8(255, 0, 0));
+
+	//Left Vector
+	Vec2 vecLeft = vecFwrd.GetRotated90Degrees();
+	AddVertsForLineSegment2D(debugVerts, m_position, m_position + vecLeft, m_debugLineThickness, Rgba8(0, 255, 0));
+
+	//Velocity Line
+	AddVertsForLineSegment2D(debugVerts, m_position, m_position + m_velocity, m_debugLineThickness, Rgba8(255, 255, 0));
+
+	if (m_chasingPlayerLocation)
+	{
+		//Line to Target Pos
+		AddVertsForLineSegment2D(debugVerts, m_position, m_targetPos, m_debugLineThickness, Rgba8(0, 0, 0, 100));
+		AddVertsForDisc2D(debugVerts, m_targetPos, 0.05f, Rgba8::BLACK);
+	}
+
+	g_renderer->SetBlendMode(BlendMode::ALPHA);
+	g_renderer->BindTexture(nullptr);
+	g_renderer->DrawVertexArray(debugVerts);
+}
+
+void Capricorn::UpdateGameConfigXmlData()
+{
+	m_physicsRadius = g_gameConfigBlackboard.GetValue("capricornPhysicsRadius", 0.35f);
+	m_maxHealth = g_gameConfigBlackboard.GetValue("capricornStartingHealth", 7.f);
+	m_health = m_maxHealth;
+	m_sightRange = g_gameConfigBlackboard.GetValue("capricornSightRange", 5.f);
+	m_turnSpeed = g_gameConfigBlackboard.GetValue("capricornTurnRate", 45.f);
+	m_moveSpeed = g_gameConfigBlackboard.GetValue("capricornDriveSpeed", 0.25f);
+	m_fireAperture = g_gameConfigBlackboard.GetValue("capricornFireAperture", 5.f);
+	m_driveAperture = g_gameConfigBlackboard.GetValue("capricornDriveAperture", 45.f);
+	m_bulletSpawnOffset = g_gameConfigBlackboard.GetValue("capricornBulletSpawnOffset", 0.2f);
+	m_fireRate = g_gameConfigBlackboard.GetValue("capricornFireRate", 2.f);
+	m_canTraverseWater = true;
+}
+
+void Capricorn::CreateTexture()
+{
+	m_entityBounds = AABB2(-0.5f, -0.5f, 0.5f, 0.5f);
+	m_texture = g_renderer->CreateOrGetTextureFromFile(g_gameConfigBlackboard.GetValue("capricornTexturePath", "").c_str());
+	AddVertsForAABB2D(m_shapeVerts, m_entityBounds, Rgba8::WHITE);
+}
