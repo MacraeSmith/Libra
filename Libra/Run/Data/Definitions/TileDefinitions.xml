@@ -1,0 +1,40 @@
+<TileDefinitions>
+
+	<TileDefinition name="MapEntry"		isSolid="false"	spriteCoords="0,7"	mapColor="255,0,0" tint="200,200,200"/>
+	<TileDefinition name="MapExit"		isSolid="false"	spriteCoords="1,7"	mapColor="145,0,255" tint="255,255,255"/>
+	<TileDefinition	name="BunkerWall"	isSolid="true"	spriteCoords="4,6"	mapColor="59,59,59" tint="255,255,255"/>
+	<TileDefinition	name="BunkerFloor"	isSolid="false"	spriteCoords="3,6"	mapColor="150,150,150" tint="150,150,150"/>
+	
+	<TileDefinition	name="Grass"		isSolid="false"	spriteCoords="0,0" mapColor="0,255,0" tint="255,255,255"/>
+	<TileDefinition	name="LongGrass"	isSolid="false"	spriteCoords="3,0" />
+	<TileDefinition	name="DarkGrass"	isSolid="false"	spriteCoords="1,0" mapColor="0,150,0" tint="220,220,220"/>
+	<TileDefinition	name="GrassHedge"	isSolid="true"	spriteCoords="7,0" />
+	<TileDefinition	name="Dirt"			isSolid="false"	spriteCoords="5,2" tint="255,255,255"/>
+	<TileDefinition name="StoneWall"	isSolid="true"	spriteCoords="7,6" mapColor="255,255,255"/>	
+	<TileDefinition name="Sand"			isSolid="false"	spriteCoords="7,1" tint="200,200,200" />
+	<TileDefinition name="DarkSand"		isSolid="false"	spriteCoords="6,1" tint="240,225,240" />
+	<TileDefinition name="CrackSand"	isSolid="false"	spriteCoords="2,2" tint="220,220,220"/>
+	<TileDefinition name="StonePavers"	isSolid="false"	spriteCoords="5,4" tint="200,200,200"/>
+	<TileDefinition name="MossyPavers"	isSolid="false"	spriteCoords="5,5" tint="200,200,200"/>
+	<TileDefinition name="CrackPavers"	isSolid="false"	spriteCoords="6,4" tint="200,200,200"/>
+	<TileDefinition name="Concrete"		isSolid="false"	spriteCoords="5,3" tint="100,100,100"/>
+	<TileDefinition name="DarkConcrete"	isSolid="false"	spriteCoords="6,3" />
+	<TileDefinition name="CrackStone"	isSolid="false"	spriteCoords="2,3" tint="220,220,220"/>
+	<TileDefinition name="DarkCrackStone"	isSolid="false"	spriteCoords="4,3" />
+	<TileDefinition name="Marble"		isSolid="false"	spriteCoords="4,6" tint="140,160,220"/>
+	<TileDefinition name="MarbleWall"	isSolid="true"	spriteCoords="4,6" tint="255,255,255"/>
+	<TileDefinition	name="BrickWall"	isSolid="true"	spriteCoords="7,3" tint="255,255,255"/>
+	<TileDefinition name="RockWall"		isSolid="true"	spriteCoords="5,3" />
+	<TileDefinition name="IronWall"		isSolid="true"	spriteCoords="5,6" />
+	<TileDefinition name="Water"		isSolid="false"	spriteCoords="5,7" mapColor="0,0,255" isWater="true"/>
+	<TileDefinition name="Lava"			isSolid="false"	spriteCoords="6,7"	isWater="true"/>
+	<TileDefinition name="BrightLava"	isSolid="false"	spriteCoords="7,7"	isWater="true"/>
+	<TileDefinition name="RedWall"		isSolid="true"	spriteCoords="4,5" />
+	<TileDefinition name="RedFloor"		isSolid="false"	spriteCoords="3,5" tint="100,255,255"/>
+	<TileDefinition name="BlueFloor"	isSolid="false"	spriteCoords="2,5" tint="150,150,150"/>
+	<TileDefinition name="GoldFloor"	isSolid="false"	spriteCoords="2,7" tint="150,150,150"/>
+
+	<TileDefinition name="StoneSlab"	isSolid="true"	spriteCoords="7,6" />
+</TileDefinitions>
+
+
