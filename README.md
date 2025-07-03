@@ -9,7 +9,7 @@ or
 
 Open the Libra Solution in Visual Studio 2022 and press ctrl + shift + B to build, and then F5 to play the game. 
 
-(If you are building from VS 2022 for the first time, you will need to right click on the Starship Solution in Editor and click Properties->ConfigurationProperties->Debugging and change the Command field to $(TargetFileName) and the Working Directory filed to $(SolutionDir)Run/)
+(If you are building from VS 2022 for the first time, you will need to right click on the Starship Solution in Editor and click Properties->ConfigurationProperties->Debugging and change the Command field to (TargetFileName) and the Working Directory filed to (SolutionDir)Run/)
 
 Keyboard Controls:
 ---------------------------------------------
