@@ -41,11 +41,18 @@ Every major system, including rendering, input, audio, debugging tools, and game
 1. Open `Libra.sln` in Visual Studio 2022.
 
 2. Configure debugger settings:
+   
+ * Right-click the ```Libra``` project and select ```Properties```
+ * Navigate to ```Configuration Properties > Debugging```
+ * Set:
 
-```text
-Command:           $(TargetFileName)
-Working Directory: $(SolutionDir)Run/
-```
+   ```text
+   Command:            $(TargetFileName)
+   Working Directory:  $(SolutionDir)Run/
+   ```
+     <p align="center">
+      <img src="Media/ConfigurationSettings.png" width="80%">
+    </p>
 
 3. Build the solution: ```Ctrl + Shift + B```
 
