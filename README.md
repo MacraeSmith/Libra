@@ -34,11 +34,9 @@ Every major system, including rendering, input, audio, debugging tools, and game
 
 ### Launch Prebuilt Executable
 
-```text
-Run/Libra_Release_x64.exe
-```
+```Run/Libra_Release_x64.exe```
 
-### Build From Source
+### Or Build From Source
 
 1. Open `Libra.sln` in Visual Studio 2022.
 
@@ -49,22 +47,14 @@ Command:           $(TargetFileName)
 Working Directory: $(SolutionDir)Run/
 ```
 
-3. Build the solution:
+3. Build the solution: ```Ctrl + Shift + B```
 
-```text
-Ctrl + Shift + B
-```
-
-4. Run the project:
-
-```text
-F5
-```
+4. Run the project: ```F5```
 
 Recommended build configurations:
 
-* Release
-* Fast_Break
+* ```Release```
+* ```Fast_Break```
 
 ---
 
