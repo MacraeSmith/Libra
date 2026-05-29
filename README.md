@@ -58,11 +58,6 @@ Every major system, including rendering, input, audio, debugging tools, and game
 
 4. Run the project: ```F5```
 
-Recommended build configurations:
-
-* ```Release```
-* ```Fast_Break```
-
 ---
 
 ## Controls
